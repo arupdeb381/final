@@ -1,0 +1,18 @@
+# Ignore all local .terraform directories anywhere in the project
+**/.terraform/
+
+# Ignore Terraform state files (they can contain sensitive data)
+*.tfstate
+*.tfstate.*
+
+# Ignore Terraform lock files - 
+*.lock.hcl
+
+
+# Ignore crash logs
+crash.log
+
+# Ignore sensitive variable files (where you put secrets)
+*.tfvars
+*.tfvars.json
+
