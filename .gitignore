@@ -8,6 +8,9 @@
 # Ignore Terraform lock files - 
 *.lock.hcl
 
+# Ignore TFvars
+*.tfvars
+
 
 # Ignore crash logs
 crash.log
