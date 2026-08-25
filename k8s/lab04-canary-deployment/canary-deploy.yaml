@@ -1,0 +1,20 @@
+# File: canary-deploy.yaml (5-25% traffic)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-canary
+spec:
+  replicas: 2  # 1 canary pod
+  selector:
+    matchLabels:
+      app: myapp
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: v2
+    spec:
+      containers:
+      - name: app
+        image: nginx:1.22  # New version

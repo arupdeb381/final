@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draft · modern page</title>
+  <!-- Google Font (Inter) for a clean, contemporary look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fafbfc;
+      color: #1e293b;
+      line-height: 1.5;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+
+    /* ----- header / nav ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #eef2f6;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: #3b82f6;
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #0f172a;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #e2e8f0;
+      padding: 0.5rem 1.25rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1e293b;
+      cursor: default;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .btn-outline i {
+      margin-right: 0.4rem;
+    }
+
+    /* ----- hero section ----- */
+    .hero {
+      padding: 4rem 2.5rem 3.5rem;
+      text-align: center;
+      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #d9e2ef;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      max-width: 750px;
+      margin: 0 auto 1.2rem;
+      color: #0b1629;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      color: #475569;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #0f172a;
+      color: white;
+      border: none;
+      padding: 0.85rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.1s;
+      cursor: default;
+      box-shadow: 0 8px 18px -6px rgba(15, 23, 42, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-primary i {
+      font-size: 1rem;
+    }
+
+    .btn-primary:hover {
+      background: #1e293b;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #0f172a;
+      border: 1.5px solid #d1d9e6;
+      padding: 0.85rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary i {
+      color: #64748b;
+    }
+
+    /* ----- features / cards (draft content) ----- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      padding: 3rem 2.5rem 4rem;
+      background: #ffffff;
+      border-top: 1px solid #edf2f7;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .feature-card {
+      background: #f9fafc;
+      padding: 2rem 1.5rem;
+      border-radius: 1.8rem;
+      transition: background 0.2s, transform 0.15s;
+      border: 1px solid #f1f4f9;
+      text-align: left;
+    }
+
+    .feature-card:hover {
+      background: #f1f5f9;
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .feature-card p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ----- quote / testimonial draft ----- */
+    .quote-section {
+      padding: 3rem 2.5rem;
+      background: #fafbfc;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .quote-box {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-box i {
+      font-size: 2.4rem;
+      color: #94a3b8;
+      opacity: 0.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-box blockquote {
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #1e293b;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .quote-box cite {
+      font-style: normal;
+      font-weight: 600;
+      color: #334155;
+      display: block;
+    }
+
+    .quote-box cite span {
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    /* ----- CTA / footer ----- */
+    .cta-section {
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      background: white;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: #475569;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.8rem 2.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      cursor: default;
+      box-shadow: 0 8px 18px -8px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-cta i {
+      margin-right: 0.5rem;
+    }
+
+    .btn-cta-outline {
+      background: transparent;
+      border: 1.5px solid #d1d9e6;
+      padding: 0.8rem 2.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1e293b;
+      transition: background 0.15s;
+      cursor: default;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #e9eef3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .footer-note a {
+      color: #334155;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    .footer-note a:hover {
+      color: #0f172a;
+    }
+
+    .social-icons i {
+      font-size: 1.2rem;
+      margin-left: 1rem;
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+
+    .social-icons i:hover {
+      color: #0f172a;
+    }
+
+    /* ----- responsive ----- */
+    @media (max-width: 700px) {
+      body { padding: 1rem; }
+      .navbar { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .nav-links { justify-content: center; flex-wrap: wrap; gap: 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero { padding: 2.5rem 1.5rem; }
+      .features { padding: 2rem 1.5rem; gap: 1.2rem; }
+      .quote-section { padding: 2rem 1.5rem; }
+      .cta-section { padding: 2.5rem 1.5rem; }
+      .footer-note { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.9rem; }
+      .btn-primary, .btn-secondary, .btn-cta, .btn-cta-outline {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-actions, .cta-actions { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- navigation -->
+  <header class="navbar">
+    <div class="logo">
+      <i class="fas fa-pen-fancy"></i> 
+      Draft<span style="font-weight: 300; color: #475569;">.</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Work</a>
+      <a href="#">Studio</a>
+      <a href="#">Journal</a>
+      <span class="btn-outline"><i class="fas fa-arrow-right"></i> Let's talk</span>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-badge">
+      <i class="fas fa-sparkles" style="margin-right: 6px;"></i> Draft v1.0
+    </div>
+    <h1>Build your <span>next idea</span> with clarity</h1>
+    <p>
+      A clean HTML draft – ready to shape, style, and bring to life. 
+      Everything you need to start fast.
+    </p>
+    <div class="hero-actions">
+      <span class="btn-primary"><i class="fas fa-rocket"></i> Get started</span>
+      <span class="btn-secondary"><i class="fas fa-play-circle"></i> See demo</span>
+    </div>
+  </section>
+
+  <!-- features (draft cards) -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+      <h3>Modular blocks</h3>
+      <p>Built with reusable components – easy to adapt, extend, or replace.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-palette"></i></div>
+      <h3>Clean aesthetics</h3>
+      <p>Neutral palette, subtle shadows, and a focus on readability.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+      <h3>Responsive out of the box</h3>
+      <p>Looks great on every screen – from mobile to large desktops.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-code"></i></div>
+      <h3>Developer friendly</h3>
+      <p>Plain HTML + CSS, no dependencies, ready for your next step.</p>
+    </div>
+  </section>
+
+  <!-- quote / testimonial -->
+  <section class="quote-section">
+    <div class="quote-box">
+      <i class="fas fa-quote-left"></i>
+      <blockquote>
+        “This draft gave us a head start. Clean, thoughtful, and 
+        exactly what we needed to present our concept.”
+      </blockquote>
+      <cite>— Elena R. <span>· Product Lead</span></cite>
+    </div>
+  </section>
+
+  <!-- call to action + footer -->
+  <section class="cta-section">
+    <h2>Ready to build?</h2>
+    <p>Customize this page, add your content, and launch in no time.</p>
+    <div class="cta-actions">
+      <span class="btn-cta"><i class="fas fa-edit"></i> Start drafting</span>
+      <span class="btn-cta-outline"><i class="fas fa-download"></i> Download HTML</span>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      <div>
+        <i class="far fa-copyright" style="margin-right: 4px;"></i> 2026 · Draft template 
+        <span style="margin: 0 0.5rem; color: #cbd5e1;">|</span>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+      <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-github"></i>
+        <i class="fab fa-dribbble"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+    </div>
+  </section>
+
+</div>
+<!-- end container -->
+</body>
+</html>
