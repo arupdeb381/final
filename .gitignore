@@ -19,3 +19,5 @@ crash.log
 *.tfvars
 *.tfvars.json
 
+# ignore exe files
+*.exe
