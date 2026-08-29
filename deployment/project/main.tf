@@ -20,7 +20,7 @@ resource "aws_vpc" "example" {
 
 #Create S3 bucket
 resource "aws_s3_bucket" "example" {
-  bucket = "arupdeb831-1"
+  bucket = "day03-bucket"
 
   tags = {
     Name        = "day03"
