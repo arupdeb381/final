@@ -3,13 +3,16 @@ name: Terraform Deployment
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch:
+    paths:
+      - 'deployment/project/**'  # Only trigger on changes in this directory
+      - '.github/workflows/terraform-deployment.yml'  # Also trigger if workflow changes
+  workflow_dispatch:  # Manual trigger still available
 
 jobs:
   deploy:
     name: Deploy Terraform Infrastructure
     runs-on: ubuntu-latest
-    environment: AWS-DebnathA  # ✅ ADD THIS LINE - References your environment
+    environment: AWS-DebnathA
     
     steps:
       - name: Checkout code
@@ -27,6 +30,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       
+      - name: Show changed files (debug)
+        run: |
+          echo "📝 Changed files in this commit:"
+          git diff --name-only HEAD^ HEAD || echo "No previous commit"
+          echo ""
+          echo "📁 Working directory: $(pwd)"
+      
       - name: Terraform Init
         working-directory: ./deployment/project
         run: terraform init
@@ -40,7 +50,8 @@ jobs:
         run: terraform apply -auto-approve
       
       - name: Show Resources
+        working-directory: ./deployment/project
         run: |
           echo "✅ Deployment Complete!"
-          echo "VPC Created: $(terraform -chdir=./deployment/project output -raw vpc_id 2>/dev/null || echo 'Not found')"
-          echo "S3 Bucket: tfbucket381"
+          echo "VPC ID: $(terraform output -raw vpc_id 2>/dev/null || echo 'Not found')"
+          echo "S3 Bucket: $(terraform output -raw s3_bucket_name 2>/dev/null || echo 'Not found')"
