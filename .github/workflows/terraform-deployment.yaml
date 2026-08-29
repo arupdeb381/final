@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'deployment/project/**'  # Only trigger on changes in this directory
+      - 'project/**'  # Only trigger on changes in this directory
       - '.github/workflows/terraform-deployment.yml'  # Also trigger if workflow changes
   workflow_dispatch:  # Manual trigger still available
 
@@ -38,19 +38,19 @@ jobs:
           echo "📁 Working directory: $(pwd)"
       
       - name: Terraform Init
-        working-directory: ./deployment/project
+        working-directory: ./project
         run: terraform init
       
       - name: Terraform Plan
-        working-directory: ./deployment/project
+        working-directory: ./project
         run: terraform plan
       
       - name: Terraform Apply
-        working-directory: ./deployment/project
+        working-directory: ./project
         run: terraform apply -auto-approve
       
       - name: Show Resources
-        working-directory: ./deployment/project
+        working-directory: ./project
         run: |
           echo "✅ Deployment Complete!"
           echo "VPC ID: $(terraform output -raw vpc_id 2>/dev/null || echo 'Not found')"
