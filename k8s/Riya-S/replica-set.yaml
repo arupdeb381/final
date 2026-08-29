@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myfirstrs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: myfirstrs
+  template:
+    metadata:
+      labels:
+        run: myfirstrs
+    spec:
+      containers:
+        - name: myfirstcontainers
+          image: nginx
