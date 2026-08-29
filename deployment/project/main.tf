@@ -20,7 +20,7 @@ resource "aws_vpc" "example" {
 
 #Create S3 bucket
 resource "aws_s3_bucket" "example" {
-  bucket = "day03-bucket"
+  bucket = "day03-bucket-arup3810-terraform"
 
   tags = {
     Name        = "day03"
