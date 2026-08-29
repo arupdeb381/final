@@ -1,4 +1,11 @@
 terraform {
+  backend "s3" {
+    bucket = "tfbucket381"
+    key    = "Dev/tf.tfstate"
+    region = "us-east-1"
+    encrypt = true
+    use_lockfile = true
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
