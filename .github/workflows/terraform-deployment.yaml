@@ -24,27 +24,23 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}  # ✅ This should work
+          aws-region: us-east-1
       
-      - name: Debug - Check region
-        run: |
-          echo "AWS Region from secret: ${{ secrets.AWS_REGION }}"
-          echo "Default region from env: $AWS_DEFAULT_REGION"
-      
+      # ✅ Changed to ./deployment/project
       - name: Terraform Init
-        working-directory: ./project
+        working-directory: ./deployment/project
         run: terraform init
       
       - name: Terraform Plan
-        working-directory: ./project
+        working-directory: ./deployment/project
         run: terraform plan
       
       - name: Terraform Apply
-        working-directory: ./project
+        working-directory: ./deployment/project
         run: terraform apply -auto-approve
       
       - name: Show Resources
         run: |
           echo "✅ Deployment Complete!"
-          echo "VPC Created: $(terraform -chdir=./project output -raw vpc_id 2>/dev/null || echo 'Not found')"
+          echo "VPC Created: $(terraform -chdir=./deployment/project output -raw vpc_id 2>/dev/null || echo 'Not found')"
           echo "S3 Bucket: tfbucket381"
