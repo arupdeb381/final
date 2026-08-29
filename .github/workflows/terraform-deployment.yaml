@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Deploy Terraform Infrastructure
     runs-on: ubuntu-latest
+    environment: AWS-DebnathA  # ✅ ADD THIS LINE - References your environment
     
     steps:
       - name: Checkout code
@@ -24,9 +25,8 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ secrets.AWS_REGION }}
       
-      # ✅ Changed to ./deployment/project
       - name: Terraform Init
         working-directory: ./deployment/project
         run: terraform init
