@@ -13,10 +13,20 @@ provider "aws" {
 }
 
 # Create a VPC
-resource "aws_vpc" "example" {
+resource "aws_vpc" "vpc01" {
   cidr_block = "10.0.0.0/16"
 }
+# Create Public subnet 
+resource "aws_subnet" "public-snet" {
+  vpc_id            = aws_vpc.vpc01.id
+  cidr_block        = "10.0.1.0/24"
+}
 
+# Create Private subnet
+resource "aws_subnet" "private-snet" {
+  vpc_id            = aws_vpc.vpc01.id
+  cidr_block        = "10.0.2.0/24"
+}
 
 #Create S3 bucket
 resource "aws_s3_bucket" "example" {
@@ -27,4 +37,5 @@ resource "aws_s3_bucket" "example" {
     Environment = "Dev"
   }
 }
-# Trigger Deployment
+
+# 
