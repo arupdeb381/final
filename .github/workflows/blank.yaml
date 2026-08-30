@@ -4,8 +4,9 @@ jobs:
   hello-world-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
       - name: Print Hello World
-        run: echo "Hello, World!"
+        run: |
+          echo "Hello 01"
+          echo "Hello 02"
+          echo "Hello 03"
+        
